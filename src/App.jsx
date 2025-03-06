@@ -1,35 +1,52 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import logo from './images/Vector.svg'
+import avatar from './images/Avatar.png'
 
-function App() {
-  const [count, setCount] = useState(0)
+function App(){
+  return(
+    <div className='page'>
+      <header className='header'>
+        <img
+          src={logo}
+          alt='Website Logo' 
+          className='header__logo' 
+        />
+      </header>
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <main className='content'>
+        <section className="profile">
+          <div class="profile__avatar-cointainer">
+            <img
+              class="profile__image"
+              src={avatar}
+              alt="your avatar"
+            />
+            <button
+              className="profile__avatar-button-edit"
+              type="button"
+              title="editar-foto-perfil"
+            ></button>
+          </div>
+          <div className="profile__info-cointainer">
+            <div className="profile__name-cointainer">
+              <h1 className="profile__name">Jacques Cousteau</h1>
+              <div className="profile__edit-button"></div>
+            </div>
+            <p className="profile__about">Explorador</p>
+          </div>
+          <div className="profile__add-button"></div>
+        </section>
+
+        <section className="cards"></section>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__copyright">&#169; 2024. Marvin Vásquez</p>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;

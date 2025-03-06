@@ -1,0 +1,94 @@
+.cards {
+  max-width: 882px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin: 50px auto;
+}
+
+.card {
+  max-width: 282px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.card__image {
+  width: 282px;
+  height: 282px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+}
+
+.card__cointainer {
+  max-width: 282px;
+  padding: 25px 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card__cointainer-like {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.card__title {
+  color: black;
+  margin: 0;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.card__icon:hover {
+  opacity: 50%;
+}
+
+.card__icon_type_like {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin: auto 0;
+  background-repeat: no-repeat;
+  background-image: url(../images/like.png);
+  background-size: contain;
+}
+
+.card__like-number {
+  margin: auto 0;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 900;
+  color: black;
+}
+
+.card__icon_type_like-active {
+  background-image: url(../images/like-active.png);
+}
+
+.card__icon_type_delete {
+  z-index: 1;
+  position: absolute;
+  background-repeat: no-repeat;
+  right: 18px;
+  top: 18px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url(../images/Trash.png);
+}
