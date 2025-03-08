@@ -1,5 +1,5 @@
 .popup {
-  display: none;
+  display: flex;
   position: fixed;
   justify-content: center;
   z-index: 2;
@@ -10,9 +10,9 @@
   right: 0;
 }
 
-.popup__show {
+/* .popup__show {
   display: flex;
-}
+} */
 
 .popup__content {
   position: relative;
