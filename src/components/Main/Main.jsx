@@ -3,7 +3,8 @@ import Popup from '../../components/Main/components/Popup/Popup.jsx';
 import NewCard from '../Form/NewCard/NewCard.jsx';
 import EditAvatar from '../Form/EditAvatar/EditAvatar.jsx';
 import EditProfile from '../Form/EditProfile/EditProfile.jsx';
-import Card from '../Main/components/Card/Card.jsx';
+import Card from '../Main/components/Cards/Cards.jsx';
+import ImagePopup from '../Main/components/Popup/ImagePopup.jsx';
 import { useState } from 'react';
 
 const cards = [
@@ -30,6 +31,7 @@ const cards = [
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
   
   const newCardPopup = {title: 'Nuevo lugar', children: <NewCard />};
   const editAvatarPopup = {title: 'Cambiar foto de perfil', children: <EditAvatar />};
@@ -41,6 +43,11 @@ export default function Main() {
 
   function handleClosePopup() {
     setPopup(null);
+    setSelectedCard(null);
+  }
+
+  function handleCardClick(card) {
+    setSelectedCard(card);
   }
 
   return(
@@ -80,7 +87,13 @@ export default function Main() {
         <section className="cards">
           <ul className="cards__list">
             {cards.map((card) => (
-              <Card key={card._id} card={card} />
+              <Card 
+                key={card._id}
+                card={card} 
+                name={card.name}
+                link={card.link}
+                onCardClick={handleCardClick}
+              />
             ))}
           </ul>
         </section>
@@ -89,6 +102,14 @@ export default function Main() {
           <Popup onClose={handleClosePopup} title={popup.title}>
             {popup.children}
           </Popup>
+        )}
+
+        {selectedCard && (
+          <ImagePopup 
+            card={selectedCard}
+            onClose={handleClosePopup} 
+            isOpen={!!selectedCard} 
+          />
         )}
       </main>
   );

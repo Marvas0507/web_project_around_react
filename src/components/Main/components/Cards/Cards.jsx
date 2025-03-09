@@ -1,5 +1,9 @@
-export default function Card(props) {
-    const {name, link} = props.card;
+export default function Cards({ link, name, onCardClick, card }) {
+    function handleClick() {
+        if (onCardClick){
+            onCardClick(card);
+        }
+    }
     return(
         <div className="template__card">
             <article className="card">
@@ -8,6 +12,7 @@ export default function Card(props) {
                     className="card__image" 
                     alt={name}
                     src={link}
+                    onClick={handleClick}
                 />
                 <div className="card__icon card__icon_type_delete"></div>
                 <div className="card__cointainer">
