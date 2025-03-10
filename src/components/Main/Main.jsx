@@ -1,10 +1,10 @@
 import avatar from '../../images/Avatar.png';
-import Popup from '../../components/Main/components/Popup/Popup.jsx';
+import Popup from '../Popup/Popup.jsx';
 import NewCard from '../Form/NewCard/NewCard.jsx';
 import EditAvatar from '../Form/EditAvatar/EditAvatar.jsx';
 import EditProfile from '../Form/EditProfile/EditProfile.jsx';
-import Card from '../Main/components/Cards/Cards.jsx';
-import ImagePopup from '../Main/components/Popup/ImagePopup.jsx';
+import Card from '../Cards/Cards.jsx';
+import ImagePopup from '../ImagePopup/ImagePopup.jsx';
 import { useState } from 'react';
 
 const cards = [
