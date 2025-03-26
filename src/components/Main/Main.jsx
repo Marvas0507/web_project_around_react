@@ -63,6 +63,24 @@ export default function Main() {
     setSelectedCard(card);
   }
 
+  async function handleCardLike(card) {
+    // Verifica una vez más si a esta tarjeta ya les has dado like
+    const isLiked = card.isLiked;
+    
+    // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
+    await api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+        setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+    }).catch((error) => console.error(error));
+  }
+
+  async function handleCardDelete(card) {
+    // Envía una solicitud a la API para eliminar la tarjeta
+    await api.deleteCard(card._id).then(() => {
+        // Actualiza el estado
+        setCards((state) => state.filter((currentCard) => currentCard._id !== card._id));
+    }).catch((error) => console.error(error));
+  }
+
   return(
     <main className='content'>
         <section className="profile">
@@ -106,6 +124,8 @@ export default function Main() {
                 name={card.name}
                 link={card.link}
                 onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
               />
             ))}
           </ul>
