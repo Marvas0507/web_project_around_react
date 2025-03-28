@@ -7,8 +7,8 @@ export default function NewCard() {
           id="place-title"
           name="name"
           placeholder="Title"
-          minlength="2"
-          maxlength="30"
+          minLength="2"
+          maxLength="30"
           required
         />
         <span className="popup__form-error-message place-title-error"></span>

@@ -9,42 +9,16 @@ import { useState, useEffect, useContext } from 'react';
 import api from '../../utils/api.js';
 import CurrentUserContext from '../../contexts/CurrentUserContext.jsx';
 
-// const cards = [
-//   {
-//     isLiked: false,
-//     // _id: '5d1f0611d321eb4bdcd707dd',
-//     _id: "1",
-//     name: 'Yosemite Valley',
-//     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg',
-//     // owner: '5d1f0611d321eb4bdcd707dd',
-//     // createdAt: '2019-07-05T08:10:57.741Z',
-//   },
-//   {
-//     isLiked: false,
-//     // _id: '5d1f064ed321eb4bdcd707de',
-//     _id: "2",
-//     name: 'Lake Louise',
-//     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg',
-//     // owner: '5d1f0611d321eb4bdcd707dd',
-//     // createdAt: '2019-07-05T08:11:58.324Z',
-//   },
-// ];
-
 export default function Main() {
   const [popup, setPopup] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
-  const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser.name);
+  const { currentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     api.getInitialCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .then(setCards)
+      .catch(console.log);
   }, []);
   
   const newCardPopup = {title: 'Nuevo lugar', children: <NewCard />};
@@ -88,7 +62,7 @@ export default function Main() {
           <div className="profile__avatar-cointainer">
             <img
               className="profile__image"
-              src={avatar}
+              src={currentUser.avatar}
               alt="your avatar"
             />
             <button
@@ -98,6 +72,27 @@ export default function Main() {
               onClick={() => handleOpenPopup(editAvatarPopup)}
             ></button>
           </div>
+          {/* <div className="profile__avatar-cointainer">
+            {currentUser && currentUser.avatar ? ( // Check if currentUser exists and has an avatar property
+              <img
+                className="profile__image"
+                src={currentUser.avatar} // Render the image if both conditions are met
+                alt="your avatar"
+              />
+            ) : (
+              <img
+                className="profile__image"
+                src={"default-avatar-url"} // Provide a default image path or null for no image
+                alt="default avatar"
+              />
+            )}
+            <button
+              className="profile__avatar-button-edit"
+              type="button"
+              title="editar-foto-perfil"
+              onClick={() => handleOpenPopup(editAvatarPopup)}
+            ></button>
+          </div> */}
           <div className="profile__info-cointainer">
             <div className="profile__name-cointainer">
               <h1 className="profile__name">{currentUser.name}</h1>

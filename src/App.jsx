@@ -8,48 +8,35 @@ import CurrentUserContext  from './contexts/CurrentUserContext.jsx'
 function App(){
   const [currentUser, setCurrentUser] = useState({});
   
-  // useEffect(() => {
-  //   api.getInitialCards()
-  //     .then((userData) => {
-  //       setCurrentUser(userData);
-  //     })
-  //     .catch((err) => {console.log(err);
-  //     });
-  // }, []);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     await api.getUserInfo().then((data) => {
-  //       setCurrentUser(data);
-  //     });
-  //   })();
-  // }, []);
-
   useEffect(() => {
-    (async () => {
-      try {
-        const data = await api.getUserInfo();
-        setCurrentUser(data);
-      } catch (error) {
-        console.error("Error al cargar usuario:", error);
-      } finally {
-        setIsLoading(false); // Terminamos de cargar
-      }
-    })();
+    api.getUserInfo().then((data) => {
+      setCurrentUser(data);
+    })
+    .catch((error) => {
+      console.error("Error al cargar usuario:", error);
+    });
   }, []);
 
-  const handleUpdateUser = (data) => {
-    (async () => {
-      await api.editProfile(data).then((newData) => {
-        console.log(newData);
-        setCurrentUser(newData);
-        
-      });
-    })();
+  const handleUpdateUser = async (data) => {
+    try{
+      const newData = await api.editProfile(data);
+      setCurrentUser(newData);
+    } catch(error){
+      console.error("Error al actualizar usuario:", error);
+    }
   };
 
+  const handleUpdateAvatar = async (data) => {
+    try{
+      const newData = await api.editAvatarProfile(data);
+      setCurrentUser(newData);
+    } catch(error){
+      console.error("Error al actualizar avatar:", error);
+    }
+  }
+
   return(
-    <CurrentUserContext.Provider value={{currentUser, handleUpdateUser}}>
+    <CurrentUserContext.Provider value={{currentUser, handleUpdateUser, handleUpdateAvatar}}>
       <div className='page'>
         <Header />
         <Main />

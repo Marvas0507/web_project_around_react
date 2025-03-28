@@ -1,11 +1,10 @@
 import { useState, useContext } from "react"
 import CurrentUserContext from "../../../contexts/CurrentUserContext"
-// import api from "../../../utils/api"
 
 export default function EditProfile() {
   const {currentUser, handleUpdateUser} = useContext(CurrentUserContext);
-  const [name, setName] = useState(currentUser.name);
-  const [description, setDescription] = useState(currentUser.about);
+  const [name, setName] = useState(currentUser?.name || '');
+  const [description, setDescription] = useState(currentUser?.about || '');
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -15,10 +14,9 @@ export default function EditProfile() {
     setDescription(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Evita el comportamiento predeterminado del envío de formularios
-    console.log(name, description);
-    handleUpdateUser ({ name, about: description }); // Actualiza la información del usuario
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+    handleUpdateUser ({ name, about: description }); 
     
   };
 
@@ -34,8 +32,8 @@ export default function EditProfile() {
         id="name"
         name="name"
         placeholder="Your name"
-        minlength="2"
-        maxlength="40"
+        minLength="2"
+        maxLength="40"
         required
         value={name}
         onChange={handleNameChange}
@@ -48,8 +46,8 @@ export default function EditProfile() {
         id="about"
         name="about"
         placeholder="description"
-        minlength="2"
-        maxlength="200"
+        minLength="2"
+        maxLength="200"
         required
         value={description}
         onChange={handleDescriptionChange}
@@ -61,3 +59,4 @@ export default function EditProfile() {
     </form>
   );
 }
+
