@@ -27,13 +27,13 @@ export default function Cards({ link, name, onCardClick, card, onCardLike, onCar
                 <img 
                     id="card-image" 
                     className="card__image" 
-                    alt={name}
-                    src={link}
+                    alt={card.name}
+                    src={card.link}
                     onClick={handleClick}
                 />
                 {isOwner && <div className="card__icon card__icon_type_delete" onClick={handleDeleteClick}></div>}
                 <div className="card__cointainer">
-                    <h2 className="card__title"> {name} </h2>
+                    <h2 className="card__title"> {card.name} </h2>
                     <div className="card__cointainer-like">
                     <div className={cardLikeButtonClassName} id="like" onClick={handleLikeClick}></div>
                     <span className="card__like-number">{card.likes.length}</span>

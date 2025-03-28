@@ -35,6 +35,7 @@ export default function Main() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [cards, setCards] = useState([]);
   const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser.name);
 
   useEffect(() => {
     api.getInitialCards()
@@ -68,7 +69,7 @@ export default function Main() {
     const isLiked = card.isLiked;
     
     // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
-    await api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+    await api.addLike(card._id, !isLiked).then((newCard) => {
         setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
     }).catch((error) => console.error(error));
   }
@@ -99,14 +100,14 @@ export default function Main() {
           </div>
           <div className="profile__info-cointainer">
             <div className="profile__name-cointainer">
-              <h1 className="profile__name">Jacques Cousteau</h1>
+              <h1 className="profile__name">{currentUser.name}</h1>
               <div 
                 className="profile__edit-button"
                 onClick={() => handleOpenPopup(editProfilePopup)}
                >
               </div>
             </div>
-            <p className="profile__about">Explorador</p>
+            <p className="profile__about">{currentUser.about}</p>
           </div>
           <div 
             className="profile__add-button"
