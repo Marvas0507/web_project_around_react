@@ -72,27 +72,6 @@ export default function Main() {
               onClick={() => handleOpenPopup(editAvatarPopup)}
             ></button>
           </div>
-          {/* <div className="profile__avatar-cointainer">
-            {currentUser && currentUser.avatar ? ( // Check if currentUser exists and has an avatar property
-              <img
-                className="profile__image"
-                src={currentUser.avatar} // Render the image if both conditions are met
-                alt="your avatar"
-              />
-            ) : (
-              <img
-                className="profile__image"
-                src={"default-avatar-url"} // Provide a default image path or null for no image
-                alt="default avatar"
-              />
-            )}
-            <button
-              className="profile__avatar-button-edit"
-              type="button"
-              title="editar-foto-perfil"
-              onClick={() => handleOpenPopup(editAvatarPopup)}
-            ></button>
-          </div> */}
           <div className="profile__info-cointainer">
             <div className="profile__name-cointainer">
               <h1 className="profile__name">{currentUser.name}</h1>

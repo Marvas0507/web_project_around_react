@@ -7,6 +7,7 @@ import CurrentUserContext  from './contexts/CurrentUserContext.jsx'
 
 function App(){
   const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
   
   useEffect(() => {
     api.getUserInfo().then((data) => {
@@ -35,8 +36,17 @@ function App(){
     }
   }
 
+  const handleAddCard = async (cardData) => {
+    try{
+      const newCard = await api.addCard(cardData);
+      setCards([newCard, ...cards]);
+    } catch(error){
+      console.error("Error al agregar tarjeta:", error);
+    }
+  }
+
   return(
-    <CurrentUserContext.Provider value={{currentUser, handleUpdateUser, handleUpdateAvatar}}>
+    <CurrentUserContext.Provider value={{currentUser, handleUpdateUser, handleUpdateAvatar, handleAddCard}}>
       <div className='page'>
         <Header />
         <Main />

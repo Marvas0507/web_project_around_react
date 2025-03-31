@@ -16,8 +16,7 @@ export default function EditProfile() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
-    handleUpdateUser ({ name, about: description }); 
-    
+    handleUpdateUser ({ name, about: description });     
   };
 
   return(
