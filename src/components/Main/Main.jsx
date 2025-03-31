@@ -3,7 +3,7 @@ import Popup from '../Popup/Popup.jsx';
 import NewCard from '../Form/NewCard/NewCard.jsx';
 import EditAvatar from '../Form/EditAvatar/EditAvatar.jsx';
 import EditProfile from '../Form/EditProfile/EditProfile.jsx';
-import Card from '../Cards/Cards.jsx';
+import Card from '../Card/Card.jsx';
 import ImagePopup from '../ImagePopup/ImagePopup.jsx';
 import { useState, useEffect, useContext } from 'react';
 // import api from '../../utils/api.js';
