@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import CurrentUserContext from "../../../contexts/CurrentUserContext"
 
-export default function NewCard() {
+export default function NewCard({ onClose }) {
 
   const {handleAddCard} = useContext(CurrentUserContext);
   const [name, setName] = useState('');
@@ -21,6 +21,7 @@ export default function NewCard() {
       await handleAddCard({ name, link: cardLink });
       setName('');
       setCardLink('');
+      onClose(); // Cierra el popup después de agregar la tarjeta
     } catch (error) {
       console.error("Error al agregar tarjeta:", error);
     }

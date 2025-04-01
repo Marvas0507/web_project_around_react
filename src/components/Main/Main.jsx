@@ -1,29 +1,20 @@
-// import avatar from '../../images/Avatar.png';
 import Popup from '../Popup/Popup.jsx';
 import NewCard from '../Form/NewCard/NewCard.jsx';
 import EditAvatar from '../Form/EditAvatar/EditAvatar.jsx';
 import EditProfile from '../Form/EditProfile/EditProfile.jsx';
 import Card from '../Card/Card.jsx';
 import ImagePopup from '../ImagePopup/ImagePopup.jsx';
-import { useState, useEffect, useContext } from 'react';
-// import api from '../../utils/api.js';
+import { useState, useContext } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 
 export default function Main( {cards, onCardLike, onCardDelete} ) {
   const [popup, setPopup] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
-  // const [cards, setCards] = useState([]);
   const { currentUser } = useContext(CurrentUserContext);
-
-  // useEffect(() => {
-  //   api.getInitialCards()
-  //     .then(setCards)
-  //     .catch(console.log);
-  // }, []);
   
-  const newCardPopup = {title: 'Nuevo lugar', children: <NewCard />};
-  const editAvatarPopup = {title: 'Cambiar foto de perfil', children: <EditAvatar />};
-  const editProfilePopup = {title: 'Editar perfil', children: <EditProfile />};
+  const newCardPopup = {title: 'Nuevo lugar', children: <NewCard onClose={handleClosePopup} />};
+  const editAvatarPopup = {title: 'Cambiar foto de perfil', children: <EditAvatar onClose={handleClosePopup} />};
+  const editProfilePopup = {title: 'Editar perfil', children: <EditProfile onClose={handleClosePopup} />};
   
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -37,24 +28,6 @@ export default function Main( {cards, onCardLike, onCardDelete} ) {
   function handleCardClick(card) {
     setSelectedCard(card);
   }
-
-  // async function handleCardLike(card) {
-  //   // Verifica una vez más si a esta tarjeta ya les has dado like
-  //   const isLiked = card.isLiked;
-    
-  //   // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
-  //   await api.addLike(card._id, !isLiked).then((newCard) => {
-  //       setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
-  //   }).catch((error) => console.error(error));
-  // }
-
-  // async function handleCardDelete(card) {
-  //   // Envía una solicitud a la API para eliminar la tarjeta
-  //   await api.deleteCard(card._id).then(() => {
-  //       // Actualiza el estado
-  //       setCards((state) => state.filter((currentCard) => currentCard._id !== card._id));
-  //   }).catch((error) => console.error(error));
-  // }
 
   return(
     <main className='content'>

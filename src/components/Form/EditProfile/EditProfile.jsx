@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import CurrentUserContext from "../../../contexts/CurrentUserContext"
 
-export default function EditProfile() {
+export default function EditProfile({ onClose}) {
   const {currentUser, handleUpdateUser} = useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser?.name || '');
   const [description, setDescription] = useState(currentUser?.about || '');
@@ -16,7 +16,10 @@ export default function EditProfile() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
-    handleUpdateUser ({ name, about: description });     
+    handleUpdateUser ({ name, about: description });
+    setName(''); // Limpia el campo de nombre después de enviar el formulario
+    setDescription(''); // Limpia el campo de descripción después de enviar el formulario  
+    onClose(); // Cierra el popup después de actualizar el perfil   
   };
 
   return(

@@ -9,19 +9,21 @@ function App(){
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState({});
 
-  // function handleCardClick(card) {
-  //   setSelectedCard(card);
-  // }
-
   async function handleCardLike(card) {
-    // Verifica una vez más si a esta tarjeta ya les has dado like
-    const isLiked = card.isLiked;
-    
-    // Envía una solicitud a la API y obtén los datos actualizados de la tarjeta
-    await api.addLike(card._id, !isLiked).then((newCard) => {
-        setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
-    }).catch((error) => console.error(error));
-  }
+    const isLiked = card.likes.some((like) => like._id === currentUser._id);
+
+    try {
+        const newCard = isLiked
+            ? await api.removeLike(card._id)  // Quitar like
+            : await api.addLike(card._id, true); // Dar like
+
+        setCards((prevCards) => 
+            prevCards.map((c) => (c._id === card._id ? newCard : c))
+        );
+    } catch (error) {
+        console.error("Error al dar o quitar like:", error);
+    }
+}
 
   async function handleCardDelete(card) {
     // Envía una solicitud a la API para eliminar la tarjeta

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"
 import CurrentUserContext from "../../../contexts/CurrentUserContext"
 
-export default function EditAvatar() {
+export default function EditAvatar({ onClose }) {
   const {currentUser, handleUpdateAvatar} = useContext(CurrentUserContext);
   const [avatarLink, setAvatarLink] = useState(currentUser?.avatar || '');
 
@@ -13,6 +13,8 @@ export default function EditAvatar() {
     e.preventDefault();
     try {
       await handleUpdateAvatar({avatar: avatarLink});
+      setAvatarLink(''); // Limpia el campo de enlace después de enviar el formulario
+      onClose(); // Cierra el popup después de actualizar el avatar
     }
     catch (error) {
       console.error("Error al actualizar avatar:", error);

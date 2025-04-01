@@ -7,6 +7,15 @@
   margin: 50px auto;
 }
 
+.cards__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 0;
+  list-style: none;
+}
+
 .card {
   max-width: 282px;
   position: relative;
@@ -14,21 +23,22 @@
   flex-direction: column;
   background-color: white;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .card__image {
   width: 282px;
   height: 282px;
   border-radius: 10px 10px 0 0;
+  object-fit: cover;
   cursor: pointer;
 }
 
 .card__cointainer {
-  max-width: 282px;
-  padding: 25px 18px;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  padding:  18px;
 }
 
 .card__cointainer-like {
